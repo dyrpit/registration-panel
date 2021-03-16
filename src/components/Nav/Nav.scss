@@ -1,0 +1,32 @@
+.nav {
+	border-bottom: 1px solid #999;
+	padding: 10px 20px;
+	display: flex;
+	justify-content: space-between;
+	font-size: 24px;
+
+	&__menu {
+		align-self: center;
+	}
+
+	&__user {
+		display: flex;
+		align-items: center;
+
+		& p {
+			margin-right: 10px;
+			font-size: 16px;
+		}
+
+		& i {
+			padding: 5px;
+			border-radius: 4px;
+			cursor: pointer;
+			color: black;
+
+			&:hover {
+				background-color: #ddd;
+			}
+		}
+	}
+}

@@ -1,0 +1,16 @@
+.button {
+	font-size: 20px;
+	background-color: cornflowerblue;
+	color: white;
+	padding: 10px 20px;
+	border: 2px solid cornflowerblue;
+	border-radius: 4px;
+	text-transform: capitalize;
+	cursor: pointer;
+	transition: 0.3s;
+
+	&:hover {
+		background-color: white;
+		color: cornflowerblue;
+	}
+}
