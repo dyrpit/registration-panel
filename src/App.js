@@ -1,8 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './components/Home/Home';
 import LoginPage from './components/LoginPage/LoginPage';
 import Nav from './components/Nav/Nav';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Profile from './components/Profile/Profile';
 import UserProvider from './context/user-context';
 import Footer from './Footer/Footer';
@@ -12,9 +13,11 @@ function App() {
 		<UserProvider>
 			<Router>
 				<Nav />
-				<Route exact path='/' component={Home} />
-				<Route path='/login' component={LoginPage} />
-				<Route path='/profile' component={Profile} />
+				<Switch>
+					<Route exact path='/' component={Home} />
+					<Route path='/login' component={LoginPage} />
+					<PrivateRoute path='/profile' component={Profile} />
+				</Switch>
 			</Router>
 			<Footer />
 		</UserProvider>

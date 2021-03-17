@@ -1,0 +1,19 @@
+.home {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	min-width: 400px;
+	min-height: 400px;
+	padding: 20px;
+	border: 1px solid #999;
+	border-radius: 4px;
+
+	&__container {
+		text-align: center;
+
+		&__title {
+			font-size: 24px;
+			padding: 20px 10px;
+		}
+	}
+}

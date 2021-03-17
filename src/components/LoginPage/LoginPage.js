@@ -5,6 +5,8 @@ import Alert from '../Alert/Alert';
 import Button from '../Button/Button';
 import Container from '../Container/Container';
 
+import './LoginPage.scss';
+
 const LoginPage = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -95,19 +97,33 @@ const LoginPage = () => {
 	return (
 		<Container>
 			{isLoggedIn && <Redirect to='/profile' />}
-			<div>LOGIN PAGE</div>
-			<form onSubmit={(e) => handleSubmit(e)}>
-				<label>
-					Email
-					<input onChange={(e) => handleOnChange(e)} value={email} type='email' />
-				</label>
-				<label>
-					Password
-					<input onChange={(e) => handleOnChange(e)} value={password} type='password' />
-				</label>
-				<button type='submit'>Log In</button>
-			</form>
-			{alert && <Alert message={alert} />}
+			<div className='login-page'>
+				<h1>Log in</h1>
+				<form className='form' onSubmit={(e) => handleSubmit(e)}>
+					<div className='form__field'>
+						<label className='form__label'>Email</label>
+						<input
+							className='form__input'
+							onChange={(e) => handleOnChange(e)}
+							value={email}
+							type='email'
+						/>
+					</div>
+					<div className='form__field'>
+						<label className='form__label'>Password</label>
+						<input
+							className='form__input'
+							onChange={(e) => handleOnChange(e)}
+							value={password}
+							type='password'
+						/>
+					</div>
+					<button className='form__button' type='submit'>
+						Log In
+					</button>
+				</form>
+				{alert && <Alert message={alert} />}
+			</div>
 			<Button title='home' to='/' />
 		</Container>
 	);

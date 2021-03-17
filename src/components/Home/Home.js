@@ -3,6 +3,8 @@ import { UserContext } from '../../context/user-context';
 import Button from '../Button/Button';
 import Container from '../Container/Container';
 
+import './Home.scss';
+
 const Home = () => {
 	const { isLoggedIn, setIsLoggedIn, setUser } = useContext(UserContext);
 
@@ -26,17 +28,23 @@ const Home = () => {
 
 	return (
 		<Container>
-			<div>
-				<h2>{!isLoggedIn ? 'Sign in' : 'Already signed in'}</h2>
-				{!isLoggedIn ? (
-					<Button title='sign in' to='login' />
-				) : (
-					<button className='button' onClick={() => handleLogout()}>
-						log out
-					</button>
-				)}
-				<h2>Don't have an account?</h2>
-				<Button title='register' to='register' />
+			<div className='home'>
+				<div className='home__container'>
+					<h2 className='home__container__title'>
+						{!isLoggedIn ? 'Sign in' : 'Already signed in'}
+					</h2>
+					{!isLoggedIn ? (
+						<Button title='sign in' to='login' />
+					) : (
+						<button className='button' onClick={() => handleLogout()}>
+							log out
+						</button>
+					)}
+				</div>
+				<div className='home__container'>
+					<h2 className='home__container__title'>Don't have an account?</h2>
+					<Button title='register' to='register' />
+				</div>
 			</div>
 		</Container>
 	);
