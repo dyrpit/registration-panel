@@ -1,0 +1,19 @@
+.input__container {
+	display: flex;
+	justify-content: space-between;
+	font-size: 22px;
+}
+
+.label {
+	flex-grow: 1;
+	text-align: start;
+	text-transform: capitalize;
+}
+
+.input {
+	padding: 0 10px;
+	border: 1px solid #999;
+	border-radius: 4px;
+	font-size: 16px;
+	outline: none;
+}
