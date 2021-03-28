@@ -13,7 +13,7 @@ const Nav = () => {
 				<i className='fas fa-bars'></i>
 			</div>
 			<div className='nav__user'>
-				<p>{!user ? 'No user logged in' : `Logged as ${user.name}`}</p>
+				<p>{!user ? 'No user logged in' : `Logged as ${user.name || user.email}`}</p>
 				<Link to='/profile'>
 					<i className='fas fa-user'></i>
 				</Link>

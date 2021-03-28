@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Button from '../Button/Button';
 import Container from '../Container/Container';
@@ -8,11 +8,22 @@ import Form from '../Form/Form';
 import './RegistrationPage.scss';
 
 const RegistartionPage = () => {
+	const [registered, setRegistered] = useState(false);
+
 	return (
 		<Container>
 			<ContentContainer>
-				<h1>Sign Up</h1>
-				<Form type='register' />
+				{registered ? (
+					<>
+						<h2>Hurray you registered successfully</h2>
+						<Button title='log in' to='/login' />
+					</>
+				) : (
+					<>
+						<h1>Sign Up</h1>
+						<Form type='register' callback={setRegistered} />
+					</>
+				)}
 			</ContentContainer>
 			<Button title='home' to='/' />
 		</Container>

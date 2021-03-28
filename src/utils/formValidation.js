@@ -32,12 +32,13 @@ const validatePasswordRepeat = (password, repeatPassword) => {
 	return { message, type: 'repeatPassword' };
 };
 
-export const formValidation = (email, password, repeatPassword) => {
+export const formValidation = (email, password, repeatPassword, formType) => {
 	const alerts = {};
 
 	const emailValidation = validateEmail(email);
 	const passwordValidation = validatePassword(password);
-	const repeatPasswordValidation = validatePasswordRepeat(password, repeatPassword);
+	const repeatPasswordValidation =
+		formType === 'register' ? validatePasswordRepeat(password, repeatPassword) : null;
 
 	const validationArray = [emailValidation, passwordValidation, repeatPasswordValidation];
 

@@ -12,7 +12,7 @@ import RegistartionPage from './components/RegistrationPage/RegistrationPage';
 function App() {
 	return (
 		<UserProvider>
-			<Router>
+			<Router basename={process.env.PUBLIC_URL}>
 				<Nav />
 				<Switch>
 					<Route exact path='/' component={Home} />

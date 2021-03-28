@@ -1,6 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
+import { API_BASE_URL, FetchOptions } from '../../constants/api';
 import { UserContext } from '../../context/user-context';
+import { useFetch } from '../../hooks/useFetch';
 import { formValidation } from '../../utils/formValidation';
 
 import Alert from '../Alert/Alert';
@@ -8,12 +10,13 @@ import Input from '../Input/Input';
 
 import './Form.scss';
 
-const Form = ({ type }) => {
+const Form = ({ type, callback }) => {
 	const [inputValues, setInputValues] = useState({});
 	const [alerts, setAlerts] = useState({});
 
+	const [{ data, isLoading, error }, login] = useFetch();
+
 	const location = useLocation();
-	console.log(location);
 
 	const { setUser, setIsLoggedIn } = useContext(UserContext);
 
@@ -30,46 +33,45 @@ const Form = ({ type }) => {
 
 		const { email, password, repeatPassword } = inputValues;
 
-		if (!Boolean(Object.keys(alerts).length)) {
+		if (!Boolean(Object.keys(inputValues).length)) {
 			setAlerts({ message: 'Fill up form before submit' });
 			return;
 		}
 
-		const validationAlerts = formValidation(email, password, repeatPassword);
+		const validationAlerts = formValidation(email, password, repeatPassword, type);
 
 		if (Boolean(Object.keys(validationAlerts).length)) {
 			setAlerts(validationAlerts);
+			return;
 		}
 
-		const body = JSON.stringify({ email, password });
+		const body = JSON.stringify(inputValues);
 
-		// const URL = 'https://pharmacy-rest.herokuapp.com/auth/login'
+		const fetchOptions = new FetchOptions('POST', undefined, undefined, body);
 
-		const data = await fetch('http://localhost:3000/auth/login', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			credentials: 'include',
-			body,
-		})
-			.then((res) => {
-				console.log(res);
-				return res.json();
-			})
-			.then((data) => data)
-			.catch((e) => console.log(e));
+		const URL =
+			type === 'register'
+				? `${API_BASE_URL}user${location.pathname}`
+				: `${API_BASE_URL}auth${location.pathname}`;
 
-		if (data.ok) {
+		login(URL, fetchOptions);
+	};
+	console.log(data);
+
+	useEffect(() => {
+		if (data?.user) {
 			setUser(data.user);
 			setIsLoggedIn(true);
-		} else {
-			console.log(data);
-			setAlerts({ message: data.message });
 		}
-	};
 
-	console.log(alerts);
+		if (callback && data?.ok) {
+			callback(true);
+		}
+
+		if (error) {
+			setAlerts({ message: error });
+		}
+	}, [data, callback, error, setIsLoggedIn, setUser]);
 
 	return (
 		<>
@@ -79,12 +81,14 @@ const Form = ({ type }) => {
 					value={inputValues.email || ''}
 					type='email'
 					name='email'
+					warning={alerts.email || ''}
 				/>
 				<Input
 					handleOnChange={handleOnChange}
 					value={inputValues.password || ''}
 					type='password'
 					name='password'
+					warning={alerts.password || ''}
 				/>
 				{type === 'register' ? (
 					<>
@@ -94,6 +98,7 @@ const Form = ({ type }) => {
 							type='password'
 							name='repeatPassword'
 							title='repeat password'
+							warning={alerts.repeatPassword || ''}
 						/>
 						<Input
 							handleOnChange={handleOnChange}
@@ -104,17 +109,17 @@ const Form = ({ type }) => {
 						<Input
 							handleOnChange={handleOnChange}
 							value={inputValues.lastName || ''}
-							type='password'
+							type='text'
 							name='lastName'
 							title='last name'
 						/>
 					</>
 				) : null}
 				<button className='form__button' type='submit'>
-					Log In
+					{type === 'register' ? 'Register' : 'Log In'}
 				</button>
 			</form>
-			{Boolean(Object.keys(alerts).length) && <Alert message={alerts.message} />}
+			{Boolean(alerts.message) && <Alert message={alerts.message} />}
 		</>
 	);
 };
