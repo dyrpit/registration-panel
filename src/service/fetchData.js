@@ -1,4 +1,4 @@
-const URL = 'https://pharmacy-rest.herokuapp.com/';
+// const URL = 'https://pharmacy-rest.herokuapp.com/';
 
 // const URL = 'http://localhost:3000/';
 
@@ -27,7 +27,7 @@ export const fetchData = async (method, path, body) => {
 	}
 
 	try {
-		return await fetch(`${URL}${path}`, options)
+		return await fetch(`${path}`, options)
 			.then((res) => {
 				console.log(res);
 				return res.json();
