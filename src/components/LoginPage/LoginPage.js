@@ -15,7 +15,7 @@ const LoginPage = () => {
 		<Container>
 			{isLoggedIn && <Redirect to='/profile' />}
 			<ContentContainer>
-				<h1>Log in</h1>
+				<h1 className='content-container__title'>Log in</h1>
 				<Form />
 			</ContentContainer>
 			<Button title='home' to='/' />

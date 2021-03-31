@@ -11,7 +11,6 @@ export const useFetch = () => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const cache = useRef({});
-	// const cancel = useRef(false);
 
 	useEffect(() => {
 		if (!url) return;
@@ -24,8 +23,6 @@ export const useFetch = () => {
 			try {
 				const response = await fetch(url, options);
 				const data = await response.json();
-
-				console.log('DATA', data);
 
 				if (data.ok) {
 					cache.current[url] = data;

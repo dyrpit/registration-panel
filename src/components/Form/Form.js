@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
+
 import { API_BASE_URL, FetchOptions } from '../../constants/api';
 import { UserContext } from '../../context/user-context';
 import { useFetch } from '../../hooks/useFetch';
@@ -56,7 +57,6 @@ const Form = ({ type, callback }) => {
 
 		login(URL, fetchOptions);
 	};
-	console.log(data);
 
 	useEffect(() => {
 		if (data?.user) {

@@ -10,3 +10,13 @@
 		font-size: 20px;
 	}
 }
+
+@media (max-width: 550px) {
+	.alert {
+		padding: 5px;
+
+		&__message {
+			font-size: 14px;
+		}
+	}
+}

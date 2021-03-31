@@ -15,12 +15,12 @@ const RegistartionPage = () => {
 			<ContentContainer>
 				{registered ? (
 					<>
-						<h2>Hurray you registered successfully</h2>
+						<h1 className='content-container__title'>Hurray you have successfully registered</h1>
 						<Button title='log in' to='/login' />
 					</>
 				) : (
 					<>
-						<h1>Sign Up</h1>
+						<h1 className='content-container__title'>sign in</h1>
 						<Form type='register' callback={setRegistered} />
 					</>
 				)}

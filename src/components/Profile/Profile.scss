@@ -5,7 +5,7 @@
 	align-items: center;
 	min-width: 450px;
 	min-height: 450px;
-	padding: 20px;
+	padding: 10px;
 	margin-bottom: 60px;
 	border: 1px solid #999;
 	border-radius: 4px;
@@ -51,5 +51,11 @@
 		&:hover .profile__role {
 			left: 150%;
 		}
+	}
+}
+
+@media (max-width: 550px) {
+	.profile {
+		min-width: 300px;
 	}
 }

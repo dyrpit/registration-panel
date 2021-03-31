@@ -8,6 +8,7 @@
 	flex-grow: 1;
 	text-align: start;
 	text-transform: capitalize;
+	text-align: start;
 }
 
 .input {
@@ -19,5 +20,13 @@
 
 	&--warning {
 		border-color: red;
+	}
+}
+
+@media (max-width: 550px) {
+	.label {
+		padding-right: 10px;
+		text-align: end;
+		font-size: 14px;
 	}
 }
