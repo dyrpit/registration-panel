@@ -1,24 +1,21 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { UserContext } from '../../context/user-context';
+import React from 'react';
 
 import './Nav.scss';
 
-const Nav = () => {
-	const { user } = useContext(UserContext);
+const Nav = ({ isOpen, setIsOpen }) => {
+	const openClass = isOpen ? '--open' : '';
 
 	return (
-		<nav className='nav'>
-			<div className='nav__menu'>
-				<i className='fas fa-bars'></i>
-			</div>
-			<div className='nav__user'>
-				<p>{!user ? 'No user logged in' : `Logged as ${user.name || user.email}`}</p>
-				<Link to='/profile'>
-					<i className='fas fa-user'></i>
-				</Link>
-			</div>
-		</nav>
+		<>
+			<div onClick={setIsOpen} className={`nav-background nav-background${openClass}`}></div>
+			<nav className={`nav nav${openClass}`}>
+				<ul>
+					<li>Users</li>
+					<li>Blog</li>
+					<li>About</li>
+				</ul>
+			</nav>
+		</>
 	);
 };
 

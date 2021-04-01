@@ -14,12 +14,12 @@ const Footer = () => {
 						rel='noreferrer'
 						alt='github-logo'
 					>
-						<i class='fab fa-linkedin'></i>
+						<i className='fab fa-linkedin'></i>
 					</a>
 				</div>
 				<div>
 					<a href='https://github.com/dyrpit' target='_blank' rel='noreferrer' alt='github-logo'>
-						<i class='fab fa-github'></i>
+						<i className='fab fa-github'></i>
 					</a>
 				</div>
 			</div>
