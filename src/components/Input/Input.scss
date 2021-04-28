@@ -1,32 +1,49 @@
 .input__container {
 	display: flex;
 	justify-content: space-between;
-	font-size: 22px;
+	font-size: var(--font-size-m);
+	padding: 10px 0;
 }
 
 .label {
 	flex-grow: 1;
-	text-align: start;
+	text-align: end;
+	padding-right: 20px;
 	text-transform: capitalize;
-	text-align: start;
+	line-height: 2;
 }
 
 .input {
 	padding: 0 10px;
 	border: 1px solid #999;
 	border-radius: 4px;
-	font-size: 16px;
+	font-size: var(--font-size-m);
 	outline: none;
+	transition: 0.3s;
+
+	&::placeholder {
+		text-transform: capitalize;
+	}
 
 	&--warning {
-		border-color: red;
+		border-color: var(--color-alert);
+		box-shadow: 0 0 4px -1px var(--bg-color-alert);
+	}
+
+	&:focus {
+		box-shadow: 0 0 6px -2px var(--color-box-shadow);
 	}
 }
 
 @media (max-width: 550px) {
+	.input {
+		font-size: var(--font-size-sm);
+		padding: 5px 10px;
+	}
+
 	.label {
 		padding-right: 10px;
 		text-align: end;
-		font-size: 14px;
+		font-size: var(--font-size-sm);
 	}
 }

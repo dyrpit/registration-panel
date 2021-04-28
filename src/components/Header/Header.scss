@@ -1,9 +1,9 @@
 .header {
 	border-bottom: 1px solid #999;
-	padding: 20px;
+	padding: 10px 20px;
 	display: flex;
 	justify-content: space-between;
-	font-size: 24px;
+	font-size: var(--font-size-l);
 	transition: 0.3s;
 
 	&__user {
@@ -12,7 +12,7 @@
 
 		& p {
 			margin-right: 10px;
-			font-size: 16px;
+			font-size: var(--font-size-m);
 		}
 
 		& i {
@@ -75,6 +75,18 @@
 		& .menu__bar:nth-child(3) {
 			bottom: 40%;
 			transform: translate(-50%, -50%) rotate(-45deg);
+		}
+	}
+}
+
+@media (max-width: 550px) {
+	.header {
+		font-size: var(--font-size-m);
+
+		&__user {
+			& p {
+				font-size: var(--font-size-sm);
+			}
 		}
 	}
 }

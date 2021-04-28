@@ -1,13 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from './components/Home/Home';
-import LoginPage from './components/LoginPage/LoginPage';
-import Header from './components/Header/Header';
-import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-import Profile from './components/Profile/Profile';
+
 import UserProvider from './context/user-context';
+
+import AboutPage from './pages/AboutPage/AboutPage';
+import ErrorPage from './pages/ErrorPage/ErrorPage';
 import Footer from './components/Footer/Footer';
-import RegistartionPage from './components/RegistrationPage/RegistrationPage';
+import Header from './components/Header/Header';
+import HomePage from './pages/HomePage/HomePage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
+import RegistartionPage from './pages/RegistrationPage/RegistrationPage';
+import UsersPage from './pages/UsersPage/UsersPage';
 
 function App() {
 	return (
@@ -15,10 +20,14 @@ function App() {
 			<Router basename={process.env.PUBLIC_URL}>
 				<Header />
 				<Switch>
-					<Route exact path='/' component={Home} />
+					<Route exact path='/' component={HomePage} />
+					<Route path='/profile' component={ProfilePage} />
 					<Route path='/login' component={LoginPage} />
 					<Route path='/register' component={RegistartionPage} />
-					<PrivateRoute path='/profile' component={Profile} />
+					<Route path='/about' component={AboutPage} />
+					<PrivateRoute path='/profile' role='user' component={ProfilePage} />
+					<PrivateRoute path='/users' role='admin' component={UsersPage} />
+					<Route path='*' component={ErrorPage} />
 				</Switch>
 			</Router>
 			<Footer />

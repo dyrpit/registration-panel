@@ -6,16 +6,28 @@
 	box-sizing: border-box;
 }
 
+:root {
+	--bg-color-alert: rgba(255, 0, 0, 0.7);
+	--bg-color-success: rgba(0, 255, 0, 0.9);
+	--color-alert: red;
+	--color-success: green;
+	--color-button: cornflowerblue;
+	--color-box-shadow: rgba(39, 58, 98, 0.8);
+
+	--font-size-sm: 14px;
+	--font-size-m: 18px;
+	--font-size-l: 22px;
+}
+
 body {
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-		'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	position: relative;
+	font-family: 'Open Sans', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	overflow: hidden;
 }
 
 #root {
 	display: flex;
 	flex-direction: column;
-	height: 100vh;
+	min-height: 100vh;
 }

@@ -1,40 +1,19 @@
-// const URL = 'https://pharmacy-rest.herokuapp.com/';
-
-// const URL = 'http://localhost:3000/';
-
-// method
-//end of URL
-//body
-
 export const fetchData = async (method, path, body) => {
-	let options = {
+	const options = {
 		method,
 		headers: {
 			'Content-Type': 'application/json',
 		},
 		credentials: 'include',
+		body: body || null,
 	};
 
-	if (body) {
-		options = {
-			method,
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			credentials: 'include',
-			body,
-		};
-	}
-
 	try {
-		return await fetch(`${path}`, options)
-			.then((res) => {
-				console.log(res);
-				return res.json();
-			})
-			.then((data) => data)
-			.catch((e) => console.log(e));
+		const response = await fetch(`${path}`, options);
+		const data = await response.json();
+
+		return data;
 	} catch (e) {
-		console.log(e);
+		return e;
 	}
 };

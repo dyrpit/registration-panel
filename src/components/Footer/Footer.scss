@@ -1,9 +1,9 @@
 .footer {
 	display: flex;
 	align-items: center;
-	height: 50px;
 	border-top: 1px solid #999;
-	padding: 5px 10px;
+	padding: 10px;
+	font-size: var(--font-size-sm);
 
 	&__links {
 		flex-grow: 1;
@@ -17,7 +17,7 @@
 				border-radius: 4px;
 				cursor: pointer;
 				color: black;
-				font-size: 20px;
+				font-size: var(--font-size-l);
 				transition: 0.3s;
 
 				&:hover {

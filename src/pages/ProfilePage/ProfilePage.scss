@@ -4,7 +4,7 @@
 	justify-content: space-around;
 	align-items: center;
 	min-width: 450px;
-	min-height: 450px;
+	min-height: 400px;
 	padding: 10px;
 	margin-bottom: 60px;
 	border: 1px solid #999;
@@ -15,7 +15,7 @@
 	}
 
 	&__user {
-		font-size: 20px;
+		font-size: var(--font-size-m);
 		margin-bottom: 20px;
 	}
 
@@ -51,6 +51,16 @@
 		&:hover .profile__role {
 			left: 150%;
 		}
+	}
+
+	&__email {
+		margin-bottom: 10px;
+	}
+
+	&__buttons {
+		width: 100%;
+		display: flex;
+		justify-content: space-evenly;
 	}
 }
 

@@ -1,4 +1,5 @@
-import React from 'react';
+import PropTypes from 'prop-types';
+
 import { useHistory } from 'react-router';
 
 import './Button.scss';
@@ -14,3 +15,8 @@ const Button = ({ title, to }) => {
 };
 
 export default Button;
+
+Button.propTypes = {
+	title: PropTypes.string,
+	to: PropTypes.string,
+};

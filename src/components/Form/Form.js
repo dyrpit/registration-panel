@@ -1,30 +1,34 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useLocation } from 'react-router';
+import { useContext, useState } from 'react';
+import { Redirect } from 'react-router';
+import PropTypes from 'prop-types';
 
-import { API_BASE_URL, FetchOptions } from '../../constants/api';
-import { UserContext } from '../../context/user-context';
-import { useFetch } from '../../hooks/useFetch';
+import { HTTP_METHODS, loginURL, registerUserURL } from '../../constants/api';
+import { fetchData } from '../../service/fetchData';
 import { formValidation } from '../../utils/formValidation';
+
+import { UserContext } from '../../context/user-context';
 
 import Alert from '../Alert/Alert';
 import Input from '../Input/Input';
+import Spinner from '../Spinner/Spinner';
 
 import './Form.scss';
 
-const Form = ({ type, callback }) => {
+const Form = ({ type }) => {
 	const [inputValues, setInputValues] = useState({});
 	const [alerts, setAlerts] = useState({});
+	const [isLoading, setIsLoading] = useState(false);
 
-	const [{ data, isLoading, error }, login] = useFetch();
-
-	const location = useLocation();
-
-	const { setUser, setIsLoggedIn } = useContext(UserContext);
+	const { setUser, setIsLoggedIn, isLoggedIn } = useContext(UserContext);
 
 	const handleOnChange = (e) => {
 		e.preventDefault();
 
 		const { value, name } = e.target;
+
+		if (alerts[name]) {
+			setAlerts((prevState) => ({ ...prevState, [name]: '' }));
+		}
 
 		setInputValues((prevState) => ({ ...prevState, [name]: value }));
 	};
@@ -32,49 +36,48 @@ const Form = ({ type, callback }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		const { email, password, repeatPassword } = inputValues;
+		const { validationAlerts, isValid } = formValidation(inputValues, type);
 
-		if (!Boolean(Object.keys(inputValues).length)) {
-			setAlerts({ message: 'Fill up form before submit' });
-			return;
-		}
-
-		const validationAlerts = formValidation(email, password, repeatPassword, type);
-
-		if (Boolean(Object.keys(validationAlerts).length)) {
+		if (!isValid) {
 			setAlerts(validationAlerts);
 			return;
 		}
 
 		const body = JSON.stringify(inputValues);
 
-		const fetchOptions = new FetchOptions('POST', undefined, undefined, body);
+		const URL = type === 'register' ? registerUserURL : loginURL;
 
-		const URL =
-			type === 'register'
-				? `${API_BASE_URL}user${location.pathname}`
-				: `${API_BASE_URL}auth${location.pathname}`;
+		try {
+			setIsLoading(true);
+			const res = await fetchData(HTTP_METHODS.POST, URL, body);
 
-		login(URL, fetchOptions);
+			if (type === 'register' && res.ok) {
+				setIsLoading(false);
+				setAlerts({ success: 'User registered successfully!' });
+				setInputValues({});
+				return;
+			}
+
+			if (res.ok) {
+				setUser(res.user);
+				setIsLoggedIn(true);
+				setIsLoading(false);
+				return;
+			} else {
+				setAlerts({ message: res.message });
+			}
+
+			setIsLoading(false);
+		} catch (e) {
+			setAlerts({ message: e.message });
+		}
+
+		setInputValues({});
 	};
-
-	useEffect(() => {
-		if (data?.user) {
-			setUser(data.user);
-			setIsLoggedIn(true);
-		}
-
-		if (callback && data?.ok) {
-			callback(true);
-		}
-
-		if (error) {
-			setAlerts({ message: error });
-		}
-	}, [data, callback, error, setIsLoggedIn, setUser]);
 
 	return (
 		<>
+			{isLoggedIn && <Redirect to='/profile' />}
 			<form className='form' onSubmit={(e) => handleSubmit(e)} noValidate>
 				<Input
 					handleOnChange={handleOnChange}
@@ -116,12 +119,20 @@ const Form = ({ type, callback }) => {
 					</>
 				) : null}
 				<button className='form__button' type='submit'>
-					{type === 'register' ? 'Register' : 'Log In'}
+					{isLoading ? <Spinner /> : type === 'register' ? 'Register' : 'Log in'}
 				</button>
 			</form>
-			{Boolean(alerts.message) && <Alert message={alerts.message} />}
+			{type === 'register' && Boolean(alerts.success) ? (
+				<Alert success={true} message={alerts.success} />
+			) : (
+				Boolean(alerts.message) && <Alert message={alerts.message} />
+			)}
 		</>
 	);
 };
 
 export default Form;
+
+Form.propTypes = {
+	type: PropTypes.string,
+};

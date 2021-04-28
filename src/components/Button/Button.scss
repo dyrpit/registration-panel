@@ -1,17 +1,29 @@
 .button {
+	position: relative;
+	width: 120px;
+	min-height: 50px;
 	font-size: 20px;
 	align-self: center;
-	background-color: cornflowerblue;
+	background-color: var(--color-button);
 	color: white;
 	padding: 10px 20px;
-	border: 2px solid cornflowerblue;
+	border: 2px solid var(--color-button);
 	border-radius: 4px;
-	text-transform: capitalize;
+	text-align: center;
 	cursor: pointer;
+	outline: none;
 	transition: 0.3s;
 
 	&:hover {
 		background-color: white;
-		color: cornflowerblue;
+		color: var(--color-button);
+	}
+}
+
+@media (max-width: 550px) {
+	.button {
+		width: 100px;
+		font-size: var(--font-size-sm);
+		padding: 10px;
 	}
 }
