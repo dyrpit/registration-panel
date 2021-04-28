@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/registration-panel/static/css/main.3a031558.chunk.css",
-    "main.js": "/registration-panel/static/js/main.de6b037a.chunk.js",
-    "main.js.map": "/registration-panel/static/js/main.de6b037a.chunk.js.map",
+    "main.css": "/registration-panel/static/css/main.b02ad439.chunk.css",
+    "main.js": "/registration-panel/static/js/main.da48578c.chunk.js",
+    "main.js.map": "/registration-panel/static/js/main.da48578c.chunk.js.map",
     "runtime-main.js": "/registration-panel/static/js/runtime-main.7c5f17d4.js",
     "runtime-main.js.map": "/registration-panel/static/js/runtime-main.7c5f17d4.js.map",
-    "static/js/2.ec78841f.chunk.js": "/registration-panel/static/js/2.ec78841f.chunk.js",
-    "static/js/2.ec78841f.chunk.js.map": "/registration-panel/static/js/2.ec78841f.chunk.js.map",
+    "static/js/2.cdb7981a.chunk.js": "/registration-panel/static/js/2.cdb7981a.chunk.js",
+    "static/js/2.cdb7981a.chunk.js.map": "/registration-panel/static/js/2.cdb7981a.chunk.js.map",
     "index.html": "/registration-panel/index.html",
-    "static/css/main.3a031558.chunk.css.map": "/registration-panel/static/css/main.3a031558.chunk.css.map",
-    "static/js/2.ec78841f.chunk.js.LICENSE.txt": "/registration-panel/static/js/2.ec78841f.chunk.js.LICENSE.txt"
+    "static/css/main.b02ad439.chunk.css.map": "/registration-panel/static/css/main.b02ad439.chunk.css.map",
+    "static/js/2.cdb7981a.chunk.js.LICENSE.txt": "/registration-panel/static/js/2.cdb7981a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.7c5f17d4.js",
-    "static/js/2.ec78841f.chunk.js",
-    "static/css/main.3a031558.chunk.css",
-    "static/js/main.de6b037a.chunk.js"
+    "static/js/2.cdb7981a.chunk.js",
+    "static/css/main.b02ad439.chunk.css",
+    "static/js/main.da48578c.chunk.js"
   ]
 }
